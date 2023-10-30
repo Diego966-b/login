@@ -14,7 +14,7 @@ class BaseDatos extends PDO {
     public function __construct(){
         $this->engine = 'mysql';
         $this->host = 'localhost';
-        $this->database = 'infoautos';
+        $this->database = 'bdautenticacion';
         $this->user = 'root';
         $this->pass = '';
         $this->debug = true;
@@ -43,19 +43,10 @@ class BaseDatos extends PDO {
         
     }
     
-  
-    
-    
-    
-    
-    
     public function getConec(){
         return $this->conec;
     }
-    
-    
-    
-    
+     
     public function setDebug($debug){
         $this->debug = $debug;
     }
@@ -68,10 +59,7 @@ class BaseDatos extends PDO {
      * Funcion que setea la variable instancia error
      */
     public function setError($e){
-      
-        $this->error = $e;
-        
-        
+        $this->error = $e;     
     }
         
     /**
@@ -79,8 +67,7 @@ class BaseDatos extends PDO {
      * @return 
      */
     public function getError(){
-        return "\n".$this->error;
-        
+        return "\n".$this->error; 
     }
     
     /**
@@ -233,11 +220,4 @@ class BaseDatos extends PDO {
       
       return $this->resultado;
    }
-   
-   
-   
-   
-
-   
- 
 } 

@@ -6,8 +6,9 @@ usNombre varchar(50),
 usPass int(11),
 usMail varchar(50),
 usDeshabilitado timestamp,
-PRIMARY KEY(idUsuario),
+PRIMARY KEY(idUsuario)
 );
+
 
 CREATE TABLE rol(
     idRol bigint(20),
