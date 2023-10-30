@@ -65,6 +65,7 @@ class AbmUsuario{
         return $resp;
         
     }
+    
     /**
      * permite eliminar un objeto 
      * @param array $param
@@ -101,7 +102,6 @@ class AbmUsuario{
     /**
      * permite buscar un objeto
      * @param array $param
-     * @return boolean
      */
     
     public function buscar($param){
