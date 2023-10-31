@@ -92,8 +92,8 @@ class Rol {
         $respuesta = false;
         $base = new BaseDatos();
         $sql = "UPDATE rol SET 
-        idRol='" . $this->getIdRol() . "," .
-        "rolDescripcion=" . $this->getRolDescripcion() . "' WHERE idRol=" . $this->getIdRol();
+        idRol='" . $this->getIdRol() . "'," ."rolDescripcion='" . $this->getRolDescripcion() . "' WHERE idRol=" . $this->getIdRol();
+        echo $sql;
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $respuesta = true;
@@ -123,7 +123,7 @@ class Rol {
         return $respuesta;
     }
 
-    public function listar($parametro = "")
+    public static function listar($parametro = "")
     {
         $arreglo = array();
         $base = new BaseDatos;
@@ -145,8 +145,5 @@ class Rol {
         }
         return $arreglo;
     }
-
-
 }
-
 ?>

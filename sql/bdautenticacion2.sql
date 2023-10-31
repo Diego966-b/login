@@ -1,3 +1,6 @@
+create database bdautenticacion;
+use bdautenticacion;
+
 -- phpMyAdmin SQL Dump
 -- version 4.8.2
 -- https://www.phpmyadmin.net/
@@ -29,8 +32,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `rol` (
-  `idrol` bigint(20) NOT NULL,
-  `rodescripcion` varchar(50) NOT NULL
+  `idRol` bigint(20) NOT NULL,
+  `rolDescripcion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -40,11 +43,11 @@ CREATE TABLE `rol` (
 --
 
 CREATE TABLE `usuario` (
-  `idusuario` bigint(20) NOT NULL,
-  `usnombre` varchar(50) NOT NULL,
-  `uspass` int(11) NOT NULL,
-  `usmail` varchar(50) NOT NULL,
-  `usdeshabilitado` timestamp NULL DEFAULT NULL
+  `idUsuario` bigint(20) NOT NULL,
+  `usNombre` varchar(50) NOT NULL,
+  `usPass` int(11) NOT NULL,
+  `usMail` varchar(50) NOT NULL,
+  `usDeshabilitado` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -53,9 +56,9 @@ CREATE TABLE `usuario` (
 -- Table structure for table `usuariorol`
 --
 
-CREATE TABLE `usuariorol` (
-  `idusuario` bigint(20) NOT NULL,
-  `idrol` bigint(20) NOT NULL
+CREATE TABLE `usuarioRol` (
+  `idUsuario` bigint(20) NOT NULL,
+  `idRol` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -66,23 +69,23 @@ CREATE TABLE `usuariorol` (
 -- Indexes for table `rol`
 --
 ALTER TABLE `rol`
-  ADD PRIMARY KEY (`idrol`),
-  ADD UNIQUE KEY `idrol` (`idrol`);
+  ADD PRIMARY KEY (`idRol`),
+  ADD UNIQUE KEY `idRol` (`idRol`);
 
 --
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idusuario`),
-  ADD UNIQUE KEY `idusuario` (`idusuario`);
+  ADD PRIMARY KEY (`idUsuario`),
+  ADD UNIQUE KEY `idUsuario` (`idUsuario`);
 
 --
 -- Indexes for table `usuariorol`
 --
-ALTER TABLE `usuariorol`
-  ADD PRIMARY KEY (`idusuario`,`idrol`),
-  ADD KEY `idusuario` (`idusuario`),
-  ADD KEY `idrol` (`idrol`);
+ALTER TABLE `usuarioRol`
+  ADD PRIMARY KEY (`idUsuario`,`idRol`),
+  ADD KEY `idUsuario` (`idUsuario`),
+  ADD KEY `idRol` (`idRol`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -92,13 +95,13 @@ ALTER TABLE `usuariorol`
 -- AUTO_INCREMENT for table `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `idrol` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRol` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -107,9 +110,9 @@ ALTER TABLE `usuario`
 --
 -- Constraints for table `usuariorol`
 --
-ALTER TABLE `usuariorol`
-  ADD CONSTRAINT `fkmovimiento_1` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuariorol_ibfk_2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON UPDATE CASCADE;
+ALTER TABLE `usuarioRol`
+  ADD CONSTRAINT `fkmovimiento_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarioRol_ibfk_2` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
