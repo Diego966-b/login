@@ -1,7 +1,8 @@
 
 <?php
-    include_once("../../config.php");
-    $pagSeleccionada = "";
+    include_once("../config.php");
+    $pagSeleccionada="usuarios";
+
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,7 @@
     <?php include_once($ESTRUCTURA."/cabecera.php"); ?>
     <div class="container text-center">
 
-        <h3>Bienvenidos a nuestro tp de login </h3>
+        <h3>Bienvenidos a usuarios </h3>
     </div>
 
     <?php include_once($ESTRUCTURA."/pie.php"); ?>
