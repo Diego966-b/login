@@ -13,9 +13,6 @@
             <p class="text-light mb-2">Marco Galan</p>
         </div>
         <div class="col text-center">
-            <p class="text-light mb-2">Joaquin Calvin</p>
-        </div>  
-        <div class="col text-center">
             <p class="text-light">Julian Alcaraz</p>
         </div>  
     </div>

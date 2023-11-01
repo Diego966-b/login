@@ -6,16 +6,17 @@ class AbmUsuario{
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
-     * @return Autos
+     * @return 
      */
     private function cargarObjeto($param){
         $obj = null;
-           
-        if( array_key_exists('idUsario',$param) and array_key_exists('usNombre',$param)and
-        array_key_exists('usPass',$param) and array_key_exists('usMail',$param) and array_key_exists('usDeshabilitado',$param) 
+        //    print_r($param);
+        if( array_key_exists('idUsuario',$param) and array_key_exists('usNombre',$param)and
+        array_key_exists('usPass',$param) and array_key_exists('usMail',$param)  
         ){
+            // echo "Entro Cargar Objetos";
             $obj = new Usuario();
-            $obj->setear($param['idUsaurio'], $param['usNombre'], $param['usPass'], $param['usMail'],$param['usDeshabilitado']);
+            $obj->setear($param['idUsuario'], $param['usNombre'], $param['usPass'], $param['usMail'],null);
           }
         return $obj;
     }
@@ -23,7 +24,7 @@ class AbmUsuario{
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
-     * @return Auto
+     * @return 
      */
     private function cargarObjetoConClave($param){
         $obj = null;
@@ -45,8 +46,11 @@ class AbmUsuario{
     
     private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['idUsuario']))
+        // print_r($param);
+        if (isset($param['idUsuario'])){
+            // echo "entro seteadocampos if";
             $resp = true;
+        }
         return $resp;
     }
     
@@ -81,18 +85,31 @@ class AbmUsuario{
         }
         return $resp;
     }
-    
+    public function bajaLogica($param){
+        $resp = false;
+        if ($this->seteadosCamposClaves($param)){
+            $objtUsers = $this->buscar($param);
+            $user=$objtUsers[0];
+            if( $user->eliminarLogico()){
+                // echo "moddifico";
+                $resp = true;
+            }
+        }
+        return $resp;
+    }
     /**
      * permite modificar un objeto
      * @param array $param
      * @return boolean
      */
     public function modificacion($param){
-        //echo "Estoy en modificacion";
+        
+        // echo "Estoy en modificacion";
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $elObjtUser = $this->cargarObjeto($param);
             if($elObjtUser!=null and $elObjtUser->modificar()){
+                // echo "moddifico";
                 $resp = true;
             }
         }

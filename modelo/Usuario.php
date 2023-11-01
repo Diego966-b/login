@@ -87,7 +87,6 @@ class Usuario
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $base->Registro();
-
                     $idUsuario = $row['idUsuario'];
                     $usNombre = $row['usNombre'];
                     $usPass = $row['usPass'];
@@ -126,7 +125,7 @@ class Usuario
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE usuario SET idUsuario='" . $this->getIdUsuario() . "',usNombre='" . $this->getUsNombre() . "',usPass='" . $this->getUsPass()."',usMail='" . $this->getUsMail()."',usDeshabilitado='" . $this->getUsDeshabilitado()."' WHERE idUsuario='" . $this->getIdUsuario() . "'";
+        $sql = "UPDATE usuario SET idUsuario='" . $this->getIdUsuario() . "',usNombre='" . $this->getUsNombre() . "',usPass='" . $this->getUsPass()."',usMail='" . $this->getUsMail()."' WHERE idUsuario='" . $this->getIdUsuario() . "'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -155,7 +154,22 @@ class Usuario
         }
         return $resp;
     }
+    public function eliminarLogico(){
+        $resp = false;
+        $base = new BaseDatos();
+        $sql = "UPDATE usuario SET usDeshabilitado = NOW() WHERE idUsuario='" . $this->getIdUsuario() . "'";
 
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($sql)) {
+                return true;
+            } else {
+                $this->setmensajeoperacion("usuario->eliminarLogico: " . $base->getError());
+            }
+        } else {
+            $this->setmensajeoperacion("usuario->eliminarLogico: " . $base->getError());
+        }
+        return $resp;
+    }
     public static function listar($parametro = "")
     {
         $arreglo = array();
