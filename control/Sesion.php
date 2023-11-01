@@ -19,7 +19,7 @@ class Sesion
         session_start();
     }
 
-    public function inciar ($nombreUsuario, $contrasenia)
+    public function iniciar ($nombreUsuario, $contrasenia)
     {          
         $abmUsuario=new AbmUsuario();
         $where =['usNombre'=>$nombreUsuario,'usPass'=>$contrasenia];
@@ -29,6 +29,8 @@ class Sesion
                 $_SESSION['usPass']=$listaUsuarios[0]->getUsPass();
                 $_SESSION['idUsuario']=$listaUsuarios[0]->getIdUsuario();
                 $_SESSION['usNombre']=$listaUsuarios[0]->getUsNombre();
+                $_SESSION['autenticado'] = true;
+                print_R($_SESSION);
             }
         }  
         return $_SESSION;

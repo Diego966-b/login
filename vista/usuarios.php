@@ -29,7 +29,6 @@ $pagSeleccionada = "usuarios";
                     <td>Mail</td>
                     <td>Estado</td>
                     <td></td>
-                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -40,8 +39,9 @@ $pagSeleccionada = "usuarios";
                         echo '<td>' . $user->getUsPass() . '  </td>';
                         echo '<td>' . $user->getUsMail() . '  </td>';
                         echo '<td>' . $user->getUsDeshabilitado() . '  </td>';
-                        echo '<td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal" data-bs-id=' . $user->getIdUsuario() . '>Editar</button></td>';
-                        echo '<td><a class="btn btn-danger" href="action/abmUsuarios.php?accion=borrar&idUsuario=' . $user->getIdUsuario() . '">borrar</a></td></tr>';
+                        echo '<td><button type="button mx-1" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal" data-bs-id=' . $user->getIdUsuario() . '>Editar</button>';
+                        echo '<a class="btn btn-success mx-1" href="action/abmUsuarios.php?accion=alta&idUsuario=' . $user->getIdUsuario() . '">Dar de alta</a>';
+                        echo '<a class="btn btn-danger mx-1" href="action/abmUsuarios.php?accion=borrar&idUsuario=' . $user->getIdUsuario() . '">Dar baja</a></td></tr>';
                     }
                 } else {
                     echo "<tr><td>no hay</td></tr>";

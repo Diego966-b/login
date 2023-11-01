@@ -4,6 +4,7 @@
     array_push($colPaginas, "");
     array_push($colPaginas, "usuarios");
     array_push($colPaginas, "roles");
+    array_push($colPaginas, "login");
 ?>
 <div class="bg-dark sticky-top">
     <h1 class="text-white text-center m-0">TP Login</h1>

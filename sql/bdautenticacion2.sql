@@ -45,7 +45,7 @@ CREATE TABLE `rol` (
 CREATE TABLE `usuario` (
   `idUsuario` bigint(20) NOT NULL,
   `usNombre` varchar(50) NOT NULL,
-  `usPass` int(11) NOT NULL,
+  `usPass` varchar(50) NOT NULL,
   `usMail` varchar(50) NOT NULL,
   `usDeshabilitado` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -118,3 +118,19 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+-- 
+-- INSERT usuario
+--
+
+INSERT INTO usuario (usNombre,usMail,usPass,usDeshabilitado) VALUES 
+("julian","julian@gmail.com","1234",null),
+("diego","diego@gmail.com","123",null),
+("marco","marco@gmail.com","12345",null),
+
+--
+-- INSERT rol
+--
+
+INSERT INTO rol (rolDescripcion) VALUES ("Jefe"),("empleado")

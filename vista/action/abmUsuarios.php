@@ -3,10 +3,16 @@ include_once '../../config.php';
 $datos = devolverDatos();
 $resp = false;
 $objTrans = new AbmUsuario();
+
+//print_r($datos);
+
 if (isset($datos['accion'])) {
     if ($datos['accion'] == 'editar') {
+        $passEncriptada = md5($datos ["usPass"]);
+        echo "Encriptada:".$passEncriptada;
+        $datos["usPass"] = $passEncriptada;
         if ($objTrans->modificacion($datos)) {
-            $resp = true;
+            $resp = true;;
         }
     }
     if ($datos['accion'] == 'borrar') {
@@ -15,7 +21,17 @@ if (isset($datos['accion'])) {
         }
     }
     if ($datos['accion'] == 'nuevo') {
+        $passEncriptada = md5($datos ["usPass"]);
+        echo "Encriptada:".$passEncriptada;
+        $datos["usPass"] = $passEncriptada;
         if ($objTrans->alta($datos)) {
+            $resp = true;
+        }
+    }
+    if ($datos['accion'] == 'alta') {
+        $datos ["usDeshabilitado"] = null;
+        //print_r($datos);
+        if ($objTrans->altaLogica($datos)) {
             $resp = true;
         }
     }

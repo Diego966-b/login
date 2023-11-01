@@ -7,13 +7,12 @@
 <html lang="en">
 <head>   
     <!-- Redirecciona al informe: -->
-    <!-- <meta http-equiv="refresh" content="0; url='<?php echo $VISTA; ?>/home/index.php'"/>        -->
+    <meta http-equiv="refresh" content="0; url='<?php echo $VISTA; ?>/login.php'"/>
     <?php include_once($ESTRUCTURA."/header.php"); ?>
 </head>
 <body>
     <?php include_once($ESTRUCTURA."/cabecera.php"); ?>
     <div class="container text-center">
-
         <h3>Bienvenidos a nuestro tp de login </h3>
     </div>
 

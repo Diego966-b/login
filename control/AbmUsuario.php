@@ -97,6 +97,18 @@ class AbmUsuario{
         }
         return $resp;
     }
+    public function altaLogica ($param){
+        $resp = false;
+        if ($this->seteadosCamposClaves($param)){
+            $objtUsers = $this->buscar($param);
+            $user=$objtUsers[0];
+            if($user->activarUsuario()){
+                // echo "moddifico";
+                $resp = true;
+            }
+        }
+        return $resp;
+    }
     /**
      * permite modificar un objeto
      * @param array $param

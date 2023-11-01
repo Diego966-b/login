@@ -170,6 +170,22 @@ class Usuario
         }
         return $resp;
     }
+    public function activarUsuario (){
+        $resp = false;
+        $base = new BaseDatos();
+        $sql = "UPDATE usuario SET usDeshabilitado = null WHERE idUsuario='" . $this->getIdUsuario() . "'";
+
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($sql)) {
+                return true;
+            } else {
+                $this->setmensajeoperacion("usuario->eliminarLogico: " . $base->getError());
+            }
+        } else {
+            $this->setmensajeoperacion("usuario->eliminarLogico: " . $base->getError());
+        }
+        return $resp;
+    }
     public static function listar($parametro = "")
     {
         $arreglo = array();
