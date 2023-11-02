@@ -1,27 +1,34 @@
-<?php 
-    $pagSeleccionada = "login";
-    include_once("../config.php");
+<?php
+$pagSeleccionada = "login";
+include_once("../config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <?php include($ESTRUCTURA."/header.php");?>
+    <?php include($ESTRUCTURA . "/header.php"); ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo $CSS ?>/estilos.css">
 </head>
-<body>  
-    <?php include($ESTRUCTURA."/cabecera.php");?>
-    <div class="container-fluid text-center">
+
+<body>
+    <?php include($ESTRUCTURA . "/cabecera.php"); ?>
+    <div class="container text-center p-4 mt-3 cajaLista col-4">
         <h3>Bienvenidos a login</h3>
+
+        <div>
+            <form name="loginForm" id="loginForm" method="post" action="action/verificarLogin.php" class="mb-3">
+               
+                    <label for="usNombre" class="form-label">Nombre de usuario</label>
+                    <input type="text" class="form-control" id="usNombre" placeholder="Pepe">
+                    <br>
+                    <label for="usPass" class="form-label">Contrase&ntilde;a</label>
+                    <input type="password" class="form-control" id="usPass" placeholder="****">
+                    <input type="submit" value="Iniciar sesion" class="btn btn-success mt-4">
+                
+            </form>
+        </div>
     </div>
-    <div>
-        <form name="loginForm" id="loginForm" method="post" action="action/verificarLogin.php">
-            <label for="usNombre">Nombre de usuario</label>
-            <input type="text" name="usNombre" id="usNombre">
-            <br><br>
-            <label for="usPass">Contrase&ntilde;a</label>
-            <input type="text" name="usPass" id="usPass">
-            <input type="submit" value="enviar">
-        </form>
-    </div>
-    <?php include($ESTRUCTURA."/pie.php");?>
+    <?php include($ESTRUCTURA . "/pie.php"); ?>
 </body>
+
 </html>

@@ -15,15 +15,15 @@ class AbmUsuarioRol {
         $objRol = null;
         $objUsuario = null;
         //print_r($param);
-        if( array_key_exists('idrol',$param) and $param['idrol']!=null ){
+        if( array_key_exists('idRol',$param) and $param['idRol']!=null ){
             $objRol = new Rol();
-            $objRol->setIdrol($param['idrol']);
+            $objRol->setIdrol($param['idRol']);
             $objRol->cargar();
         }
         
-        if( array_key_exists('idusuario',$param) && $param['idusuario']!=null){
+        if( array_key_exists('idUsuario',$param) && $param['idUsuario']!=null){
             $objUsuario = new Usuario();
-            $objUsuario->setIdUsuario($param['idusuario']);
+            $objUsuario->setIdUsuario($param['idUsuario']);
             $objUsuario->cargar();
         }   
         
@@ -39,7 +39,7 @@ class AbmUsuarioRol {
      * @return object
      */
     private function cargarObjetoConClave($param){
-        $objUsuarioRol = null;
+        $objUsuarioRol = null;     
         //print_R ($param);
         if( isset($param['idusuario']) && isset($param['idrol']) ){
             $objUsuarioRol = new UsuarioRol();
@@ -70,7 +70,7 @@ class AbmUsuarioRol {
      * @param array $param
      */
     public function alta($param){
-        
+        print_r($param);
         //  echo "entramos a alta";
         
         $resp = false;

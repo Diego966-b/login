@@ -16,16 +16,20 @@
 <html lang="en">
 <head>
     <?php include($ESTRUCTURA."/header.php");?>
+    <link rel="stylesheet" type="text/css" href="<?php echo $CSS ?>/estilos.css">
 </head>
 <body>
     <?php include_once($ESTRUCTURA."/cabecera.php"); 
-        echo "<p>Datos del rol seleccionado</p>";
+    echo "<div class='container text-center p-4 mt-3 cajaLista'>";
+        echo "<h3>Datos del rol seleccionado</h3>";
         echo "<div class='text-center mx-auto'>";
-            echo "<table class='table table-bordered border border-black'>";
-                echo "<tr>";
+            echo "<table class='table m-auto'>";
+            echo  "<thead class='table-dark fw-bold'>";
+            echo "<tr>";
                     echo "<td>ID</td>";
                     echo "<td>Descripcion</td>";
                 echo "</tr>";
+                echo "</thead>";
                 echo "<tr>";
                     echo "<td>".$rolSeleccionado->getIdRol()."</td>";
                     echo "<td>".$rolSeleccionado->getRolDescripcion()."</td>";
@@ -33,16 +37,18 @@
             echo "</table>";
         echo "</div>";
         ?>
-        <p>¿Estas seguro que deseas borrar el rol?</p>
+        
             <form method="post" name="eliminarRol" id="eliminarRol" action="<?php echo $VISTA;?>/action/abmRol.php">
                 <input type="text" id="idRol" name="idRol" hidden value="<?php echo $idRol;?>">
                 <input type="text" id="accion" name="accion" hidden value="<?php echo $accion;?>">
                 <br><br> 
-                <input type="submit" value="Si">
-                <a href="roles.php">Volver</a>
+                <p>¿Estas seguro que deseas borrar el rol?</p>
+                <input type="submit" value="Eliminar" class="btn btn-danger">                
             </form>
+            <a href="roles.php"> <button class="btn btn-success">Volver</button></a>
         <?php
     ?>
+    </div>
 <?php include($ESTRUCTURA."/pie.php");?>
 </body>
 </html>

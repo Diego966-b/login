@@ -36,11 +36,19 @@
 <html lang="en">
 <head>
     <?php include($ESTRUCTURA."/header.php");?>
+    <link rel="stylesheet" type="text/css" href="<?php echo $CSS ?>/estilos.css">
 </head>
 <body>
     <?php include($ESTRUCTURA."/cabecera.php");?>
-    <p><?php echo $mensaje; ?></p>
-    <a href="../roles.php">Volver</a>
+    
+   
+    <div class="container-fluid text-center cajaLista">        
+        <div class="fw-bold">
+                <?php echo $mensaje;?>
+        </div>
+        <br><a href="../roles.php" class="btn btn-dark">Volver</a><br>
+    </div>
+    
     <?php include($ESTRUCTURA."/pie.php");?>
 </body>
 </html>

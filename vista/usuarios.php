@@ -15,7 +15,21 @@ $pagSeleccionada = "usuarios";
 <body class="">
     <?php include_once($ESTRUCTURA . "/cabecera.php");
     $objUsuario = new AbmUsuario;
+    $objRolUsuario = new AbmUsuarioRol;
+    $objRol = new AbmRol;
+
+    $listadoRoles = $objRol->buscar(null);
     $listaUsuarios = $objUsuario->buscar(null);
+    $listadoRolesYusuarios = $objRolUsuario->buscar(null);
+     //Inicio modificacion Marco
+    foreach ($listadoRoles as $rol){
+        if($rol->getRolDescripcion() == "empleado" && $rol->getIdRol() == 2){
+            $rolDescripcion= $rol->getRolDescripcion();
+            $rolId = $rol->getIdRol();
+            $rolSeleccionado = $rol;
+        }        
+    }
+ //Fin modificacion Marco
 
     ?>
     <div class="container text-center p-4 mt-3 cajaLista">
@@ -28,24 +42,49 @@ $pagSeleccionada = "usuarios";
                     <td>Password</td>
                     <td>Mail</td>
                     <td>Estado</td>
-                    <td></td>
+                    <td>Rol</td>
+                    <td colspan="8">Acciones</td>
+                    
+                    
                 </tr>
             </thead>
             <tbody>
                 <?php
                 if (count($listaUsuarios) > 0) {
                     foreach ($listaUsuarios as $user) {
+                        
                         echo '<tr><td>' . $user->getUsNombre() . '</td>';
                         echo '<td>' . $user->getUsPass() . '  </td>';
                         echo '<td>' . $user->getUsMail() . '  </td>';
-                        echo '<td>' . $user->getUsDeshabilitado() . '  </td>';
+                        echo '<td>' . $user->getUsDeshabilitado() . '  </td>';                        
+                       
+                         //Inicio modificacion Marco 
+                         foreach ($listadoRoles as $roles){
+                            foreach ($listadoRolesYusuarios as $rolesUsuarios){
+                                    $objUsuario = $rolesUsuarios->getObjUsuario();
+                                    $objRol = $rolesUsuarios->getObjRol();
+                                    $roles->getIdRol();
+                                    $user->getIdUsuario();
+                                    //print_r($objRol);
+                                    //echo $objRol[0]->getIdRol();
+                                    
+                                    if($objRol[0]->getIdRol() ==  $roles->getIdRol() && $objUsuario[0]->getIdUsuario() == $user->getIdUsuario()){
+                                        echo '<td>' . $roles->getRolDescripcion() . '</td>';
+                                    }else{
+                                        echo '<td>';
+                                    }
+                            }                           
+                         }   
+
+                        
+                     //Fin modificacion Marco
                         echo '<td><button type="button mx-1" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal" data-bs-id=' . $user->getIdUsuario() . '>Editar</button>';
                         echo '<a class="btn btn-success mx-1" href="action/abmUsuarios.php?accion=alta&idUsuario=' . $user->getIdUsuario() . '">Dar de alta</a>';
                         echo '<a class="btn btn-danger mx-1" href="action/abmUsuarios.php?accion=borrar&idUsuario=' . $user->getIdUsuario() . '">Dar baja</a></td></tr>';
                     }
-                } else {
-                    echo "<tr><td>no hay</td></tr>";
+                    
                 }
+                
                 ?>
             </tbody>
         </table>
@@ -80,6 +119,22 @@ $pagSeleccionada = "usuarios";
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="usPass">
                     </div>
+                    <!-- Inicio Modificacion de Marco -->
+                    <div class="mb-3">
+                        <label for="administrador">
+                        <input type="checkbox" name="administrador" id="administrador">
+                        Administrador</label>
+                        <label for="empleado">
+                        <input type="checkbox" name="empleado" id="empleado">
+                        Empleado</label>
+                        <label for="jeef">
+                        <input type="checkbox" name="jefe" id="jefe">
+                        Jefe</label>
+                        <label for="usuario">
+                        <input type="checkbox" name="usuario" id="usuario">
+                        Usuario</label>
+                    </div>
+                    <!-- fin Modificacion de Marco -->
                     <input id="accion" name="accion" value="editar" type="hidden">
                 </div>
                 <div class="modal-footer  bg-dark">

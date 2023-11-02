@@ -8,11 +8,23 @@ class AbmUsuarioRol {
      */
     private function cargarObjeto ($param){
         $obj = null;
-        if (array_key_exists('objRol',$param) and array_key_exists('objUsuario',$param))
+        if (array_key_exists('idUsuario',$param) and array_key_exists('idRol',$param))
         {
+            //Inicio modificacion Marco
+
             $obj = new UsuarioRol();
-            $obj -> setear($param['objRol'], $param['objUsuario']);
+            $abmUsuario = new AbmUsuario ();
+            $abmRol = new AbmRol ();
+            $array = [];
+            $array ['idUsuario'] = $param['idUsuario'];
+            $array ['idRol'] = $param['idRol'];
+            $objUsuario = $abmUsuario -> buscar ($array);
+            $objRol = $abmRol -> buscar ($array);
+           //Fin modificacion Marco
+            $obj -> setear($objUsuario, $objRol);
         }
+
+        
         return $obj;
     }
 
@@ -34,6 +46,7 @@ class AbmUsuarioRol {
      */
     public function alta($param){
         $resp = false;
+        
         // $param['Patente'] = null;
         $elObjUsuarioRol = $this->cargarObjeto($param);
         if ($elObjUsuarioRol!=null and $elObjUsuarioRol->insertar()){

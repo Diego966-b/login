@@ -5,8 +5,8 @@ class UsuarioRol
 
     public function __construct()
     {
-        $this->objUsuario = "";
-        $this->objRol = "";
+        $this->objUsuario = new Usuario();
+        $this->objRol = new Rol();
         $this->mensajeOperacion = "";
     }
 
@@ -51,8 +51,11 @@ class UsuarioRol
         $base = new BaseDatos();
         $objUsuario = $this->getObjUsuario();
         $objRol = $this->getObjRol();
+        $objUsuarioDeverdad = $objUsuario[0]; //Modificado por Marco
+        $objRolDeVerdad = $objRol[0]; //Modificado por Marco
+            
         $sql = "INSERT INTO usuarioRol (idUsuario, idRol)
-        VALUES ('" . $objUsuario->getIdUsuario() . "', '" . $objRol->getIdRol() . "')";
+        VALUES ('" . $objUsuarioDeverdad->getIdUsuario() . "', '" . $objRolDeVerdad->getIdRol() . "')";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $respuesta = true;
