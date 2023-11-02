@@ -1,5 +1,5 @@
 <?php 
-    include_once("../config.php");
+    include_once("../../config.php");
   
     $con= new mysqli('localhost','root','','bdautenticacion');
     $id= $con->real_escape_string($_POST['id']);

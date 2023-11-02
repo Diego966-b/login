@@ -1,6 +1,6 @@
 <?php 
     $pagSeleccionada = "roles";
-    include_once("../config.php");
+    include_once("../../config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,10 +9,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $CSS ?>/estilos.css">
 </head>
 <body>  
-    <?php include($ESTRUCTURA."/cabecera.php");?>
+    <?php include($ESTRUCTURA . "/cabeceraSegura.php");?>
     <div class="container text-center p-4 mt-3 cajaLista">
         <h3>Bienvenidos a roles</h3>
-    
     <?php 
         $objAbmRol = new AbmRol();
         $listaRoles = $objAbmRol->buscar(null);

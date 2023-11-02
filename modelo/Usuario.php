@@ -199,7 +199,6 @@ class Usuario
             if ($res > 0) {
                 while ($row = $base->Registro()) {
                     $obj = new Usuario();
-                    // $abmPersona = new AbmPersona();
                     $idUsuario = $row['idUsuario'];
                     $usNombre = $row['usNombre'];
                     $usPass = $row['usPass'];

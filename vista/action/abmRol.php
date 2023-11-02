@@ -4,11 +4,9 @@
     $colDatos = devolverDatos();
     $resp = false;
     $objTrans = new AbmRol();
-    print_r($colDatos);
     if (isset($colDatos['accion'])){
         $accion = $colDatos['accion'];
         if($accion == 'editar'){
-            echo "ENTRE A EDITAR";
             if($objTrans->modificacion($colDatos)){
                 $resp = true;
             }

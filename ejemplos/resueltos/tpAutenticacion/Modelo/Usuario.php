@@ -165,7 +165,6 @@ class Usuario {
     }
     
     public static function listar($parametro=""){
-        
         $arreglo = array();
         $base=new BaseDatos();
         $sql="SELECT * FROM usuario ";
@@ -173,10 +172,9 @@ class Usuario {
         if ($parametro!="") {
             $sql.='WHERE '.$parametro;
         }
-        
-        
-        
+
         $res = $base->Ejecutar($sql);
+        
         if($res>-1){
             if($res>0){
                 while ($row = $base->Registro()){

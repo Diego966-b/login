@@ -1,5 +1,5 @@
 <?php
-    include_once("../config.php");
+    include_once("../../config.php");
     $pagSeleccionada = "roles";
     $arrayRol = [];
     $colDatos = devolverDatos();
@@ -22,8 +22,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $CSS ?>/estilos.css">
 </head>
 <body>
-    <?php include_once($ESTRUCTURA."/cabecera.php"); 
-        ?>
+    <?php include($ESTRUCTURA . "/cabeceraSegura.php");?>
 
 <div class="container-sm p-2 mt-3 cajaLista  col-4">
         

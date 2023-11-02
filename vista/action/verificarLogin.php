@@ -12,7 +12,7 @@
     <?php include($ESTRUCTURA."/header.php");?>
 </head>
 <body>
-    <?php include($ESTRUCTURA."/cabecera.php");
+    <?php include($ESTRUCTURA."/cabeceraNoSegura.php");
         $abmUsuario = new AbmUsuario();
         $listaUsuarios = $abmUsuario -> buscar(null);
         $valido = false;
@@ -42,14 +42,17 @@
         {
             $objSesion = new Sesion();
             $objSesion -> iniciar($nombreIngresado, $contraseniaEncriptada);
+            // echo $VISTA."/pagSegura.php";
             echo "Valido";
-            header("Refresh: 2; URL='$VISTA/pagSegura.php'");
+            // echo "<script>location.href ='$VISTA/roles/roles.php'; </script>";
+            header("Refresh: 2; URL='$VISTA/pagSegura/pagSegura.php'");
+            // /login/vista/pagSegura.phpValido
 
         }
         else
         {
             echo "NoValido";
-            header("Refresh: 2; URL='$VISTA/login.php'");
+            header("Refresh: 2; URL='$VISTA/login/login.php'");
         }
     ?>
     <?php include($ESTRUCTURA."/pie.php");?>

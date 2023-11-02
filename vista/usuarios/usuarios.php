@@ -1,5 +1,5 @@
 <?php
-include_once("../config.php");
+include_once("../../config.php");
 $pagSeleccionada = "usuarios";
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ $pagSeleccionada = "usuarios";
 </head>
 
 <body class="">
-    <?php include_once($ESTRUCTURA . "/cabecera.php");
+    <?php include($ESTRUCTURA . "/cabeceraSegura.php"); 
     $objUsuario = new AbmUsuario;
     $objRolUsuario = new AbmUsuarioRol;
     $objRol = new AbmRol;

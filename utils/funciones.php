@@ -65,9 +65,9 @@
     spl_autoload_register(function ($class_name) {
         //echo "class ".$class_name ;
         $directorys = array(
-            $_SESSION['ROOT'].'modelo/',
-            $_SESSION['ROOT'].'modelo/conector/',
-            $_SESSION['ROOT'].'control/',
+            $GLOBALS['ROOT'].'modelo/',
+            $GLOBALS['ROOT'].'modelo/conector/',
+            $GLOBALS['ROOT'].'control/',
           //  $GLOBALS['ROOT'].'util/class/',
         );
         // print_r($directorys);

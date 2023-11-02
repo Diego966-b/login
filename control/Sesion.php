@@ -34,8 +34,13 @@ class Sesion
         $param['usPass'] = $contrasenia;
         $param['usDeshabilitado'] = "null"; 
         $resultado = $obj -> buscar ($param);
+        
+        // print_r($param);
+        // echo "resultado:";
+        // print_r($resultado);
         if (count($resultado) > 0)
         {
+            echo "<h1>Count</h1>";
             $usuario = $resultado[0];
             $idUsuario = $usuario -> getIdUsuario();
             $_SESSION ['idUsuario'] = $idUsuario;

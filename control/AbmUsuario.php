@@ -137,19 +137,23 @@ class AbmUsuario{
         $where = " true ";
         if ($param<>NULL){
             if  (isset($param['idUsuario'])){
+                //echo "tengo idUsuario";
                 $where.=" and idUsuario ='".$param['idUsuario']."'";}
             if  (isset($param['usNombre'])){
+                //echo "tengo usNombre";
                  $where.=" and usNombre ='".$param['usNombre']."'";}
             if  (isset($param['usPass'])) {
+                //echo "tengo usPass";
                 $where.=" and usPass ='".$param['usPass']."'";
             }
             if  (isset($param['usMail'])) {
                 $where.=" and usMail ='".$param['usMail']."'";
             }
             if  (isset($param['usDeshabilitado'])) {
-                $where.=" and usDeshabilitado ='".$param['usDeshabilitado']."'";
+                $where.=" and usdeshabilitado is null";
             }    
         }
+        // echo "WHERE:".$where;
         $arreglo = Usuario::listar($where);  
         return $arreglo;
               

@@ -1,11 +1,6 @@
 <?php
-    include_once("../config.php");
-    $objSesion = new Sesion();
-    if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true)
-    {
-        echo "No";
-        header("Refresh: 0; URL='$VISTA/login.php'");
-    }
+    include_once("../../config.php");
+    $pagSeleccionada = "login";
     ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -13,10 +8,12 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Document</title>
+            <?php include_once($ESTRUCTURA."/header.php"); ?>
         </head>
         <body>
+            <?php include_once($ESTRUCTURA . "/cabeceraSegura.php");?>
             <H2>VISTA SEGURA</H2>
-            <form name="cerrarSesion" id="cerrarSesion" method="post" action="action/eliminarSesion.php">
+            <form name="cerrarSesion" id="cerrarSesion" method="post" action="../action/eliminarSesion.php">
                 <input type="submit" value="cerrar">
             </form>
         </body>

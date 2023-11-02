@@ -2,13 +2,13 @@
 header('Content-Type: text/html; charset=utf-8');
 header ("Cache-Control: no-cache, must-revalidate ");
 
-$PROYECTO = 'login'; 
+$PROYECTO = 'proyectoLogin'; 
 //variable que almacena el directorio del proyecto
 $ROOT = $_SERVER['DOCUMENT_ROOT']."/$PROYECTO/";
-$_SESSION['ROOT'] = $ROOT;
+$GLOBALS['ROOT'] = $ROOT;
 
 // Archivo funciones: 
-include_once($ROOT.'utils/funciones.php');
+include_once($GLOBALS['ROOT'].'utils/funciones.php');
 
 $ESTRUCTURA = $ROOT.'vista/estructura';
 $VISTA = '/'.$PROYECTO.'/vista';
