@@ -14,13 +14,39 @@ class Sesion
 
     // Métodos 
     
+    /**
+     * Hace un session_start. 
+     */
     public function __construct()
     {
         session_start();
     }
 
+    /**
+     * Guarda el ID de usuario en $_SESSION y retorna un booleano.
+     * @return boolean
+     */
     public function iniciar ($nombreUsuario, $contrasenia)
-    {          
+    {  
+        $exito = false;
+        $obj = new AbmUsuario();
+        $param['usNombre'] = $nombreUsuario;
+        $param['usPass'] = $contrasenia;
+        $param['usDeshabilitado'] = "null"; 
+        $resultado = $obj -> buscar ($param);
+        if (count($resultado) > 0)
+        {
+            $usuario = $resultado[0];
+            $idUsuario = $usuario -> getIdUsuario();
+            $_SESSION ['idUsuario'] = $idUsuario;
+            $exito = true;
+        }
+        else
+        {
+            $this -> cerrar();
+        }
+        return $exito;
+        /*
         $abmUsuario=new AbmUsuario();
         $where =['usNombre'=>$nombreUsuario,'usPass'=>$contrasenia];
         $listaUsuarios=$abmUsuario->buscar($where);
@@ -33,27 +59,61 @@ class Sesion
                 print_R($_SESSION);
             }
         }  
-        return $_SESSION;
+        */  
     }
 
+    /**
+     * Devuelve un booleano dependiendo de si la sesion esta activa o no 
+     * @return boolean
+     */
     public function activa ()
     {
+        $resp = false;
+        if (php_sapi_name() !== 'cli')
+        {
+            if (version_compare(phpversion(), '5.4.0', '>=')) 
+            {
+                $resp = session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
+            }
+            else
+            {
+                $resp = session_id() === '' ? FALSE : TRUE;
+            }
+        }
+        return $resp;
+        /*
         $activa = false;
         if (session_id())
         {
             $activa = true;
         }
         return $activa;
+        */
     }
-
+    
+    /**
+     * Valida una sesion
+     */
     public function validar(){
+        $resp = false;
+        if ($this -> activa() && isset($_SESSION['idUsuario']))
+        {
+            $resp = true;
+        }
+        return $resp;
+        /*
         $inicia=false;
         if(isset($_SESSION['idusuario'])){
            $inicia=true;
         }
         return $inicia;
+        */
     }
 
+    /**
+     * Cierra sesion. Retorna un booleano.
+     * @return boolean
+     */
     public function cerrar ()
     {
         $exito = false;
@@ -64,7 +124,24 @@ class Sesion
         return $exito;
     }
 
+    /**
+     * Devuelve el obj del usuario logeado.
+     * Retorna null si no hay usuario logeado.
+     */
     public function getUsuario(){
+        $usuario = null;
+        if ($this -> validar())
+        {
+            $obj = new AbmUsuario();
+            $param ['idUsuario'] = $_SESSION['idUsuario'];
+            $resultado = $obj -> buscar ($param);
+            if (count($resultado) > 0)
+            {
+                $usuario = $resultado[0];
+            }
+            return $usuario;
+        }
+        /*
         $usuarioLog = "";
         if ($this->validar() && $this->activa()) {
             $abmUsuario=new AbmUsuario();
@@ -75,9 +152,28 @@ class Sesion
             }
         }
         return $usuarioLog;
+        */
     }
 
+    /**
+     * Devuelve obj rol del usuario logeado.
+     * Retorna null si no hay usuario logeado.
+     */
     public function getRol(){
+        $listaRoles = null;
+        if ($this -> validar())
+        {
+            $obj = new AbmUsuario();
+            $param ['idUsuario'] = $_SESSION ['idUsuario'];
+            $resultado = $obj -> buscar ($param); // Usa: $obj -> darRoles ($param);
+            if (count($resultado) > 0)
+            {
+                $listaRoles = $resultado [0];
+            }
+            return $listaRoles;
+        }
+
+        /*
         $abmRol=new abmRol();
         $abmUsuarioRol=new AbmUsuarioRol();
         $usuario=$this->getUsuario();
@@ -91,19 +187,6 @@ class Sesion
             $rol = null;
         }
         return $rol; 
-    }
-
-    // Método __toString
-
-    /**
-     * Devuelve en un string los valores de los atributos
-     * @return string
-     */
-    public function __toString ()
-    {
-        // Variables Internas
-        // string $frase
-        $frase = "";
-        return $frase;
+        */
     }
 }
