@@ -44,10 +44,9 @@
                 <input type="text" id="idRol" name="idRol" hidden value="<?php echo $idRol;?>">
                 <input type="text" id="accion" name="accion" hidden value="<?php echo $accion;?>">
                 <br><br> 
-                
                 <input type="submit" value="Enviar" class="btn btn-primary">
             </form>
-            <a href="roles.php"> <button class="btn btn-success">Volver</button></a>
+            <a href="<?php echo $VISTA?>/roles/roles.php"><button class="btn btn-success">Volver</button></a>
         <?php
     ?>
 <?php include($ESTRUCTURA."/pie.php");?>

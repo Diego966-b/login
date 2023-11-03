@@ -30,19 +30,18 @@
                         echo "<tr>";
                             echo '<td>'.$objRol->getIdRol().'</td>';
                             echo '<td>'.$objRol->getRolDescripcion().'</td>';
-                            echo '<td><a href="editarRol.php?idRol='.$objRol->getIdRol().'&accion=editar"><button class="btn btn-primary mx-1">Editar</button></a>';
-                           
-                            echo '<a href="eliminarRol.php?idRol='.$objRol->getIdRol().'&accion=eliminar"><button class="btn btn-danger mx-1">Eliminar</button></a></td>'; 
+                            echo '<td><a href="'.$VISTA.'/roles/editarRol.php?idRol='.$objRol->getIdRol().'&accion=editar"><button class="btn btn-primary mx-1">Editar</button></a>';
+                            echo '<a href="'.$VISTA.'/roles/eliminarRol.php?idRol='.$objRol->getIdRol().'&accion=eliminar"><button class="btn btn-danger mx-1">Eliminar</button></a></td>'; 
                         echo "</tr>";
                 }
                 echo "</table>";
             echo "</div>";
-            echo '<a href='.$VISTA.'/nuevoRol.php?accion=nuevo><button class="btn btn-success"> Crear nuevo rol </button></a>';
+            echo '<a href='.$VISTA.'/roles/nuevoRol.php?accion=nuevo><button class="btn btn-success"> Crear nuevo rol </button></a>';
         }
         else
         {
             echo "<h3>No hay roles cargados</h3>";
-            echo '<a href='.$VISTA.'/nuevoRol.php?accion=nuevo><button class="btn btn-success m-2"> Crear nuevo rol </button></a>';
+            echo '<a href='.$VISTA.'/roles/nuevoRol.php?accion=nuevo><button class="btn btn-success m-2"> Crear nuevo rol </button></a>';
         }
        
     ?>

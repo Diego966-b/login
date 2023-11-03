@@ -11,7 +11,6 @@ class AbmUsuarioRol {
         if (array_key_exists('idUsuario',$param) and array_key_exists('idRol',$param))
         {
             //Inicio modificacion Marco
-
             $obj = new UsuarioRol();
             $abmUsuario = new AbmUsuario ();
             $abmRol = new AbmRol ();

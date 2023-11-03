@@ -4,14 +4,12 @@ $pagSeleccionada = "usuarios";
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- Redirecciona al informe: -->
     <!-- <meta http-equiv="refresh" content="0; url='<?php echo $VISTA; ?>/home/index.php'"/>        -->
     <?php include_once($ESTRUCTURA . "/header.php"); ?>
     <link rel="stylesheet" type="text/css" href="<?php echo $CSS ?>/estilos.css">
 </head>
-
 <body class="">
     <?php include($ESTRUCTURA . "/cabeceraSegura.php"); 
     $objUsuario = new AbmUsuario;
@@ -30,10 +28,8 @@ $pagSeleccionada = "usuarios";
         }        
     }
  //Fin modificacion Marco
-
     ?>
     <div class="container text-center p-4 mt-3 cajaLista">
-
         <h2>Lista de usuarios </h2>
         <table  class="table m-auto">
             <thead class="table-dark fw-bold">
@@ -44,22 +40,25 @@ $pagSeleccionada = "usuarios";
                     <td>Estado</td>
                     <td>Rol</td>
                     <td colspan="8">Acciones</td>
-                    
-                    
                 </tr>
             </thead>
             <tbody>
                 <?php
                 if (count($listaUsuarios) > 0) {
                     foreach ($listaUsuarios as $user) {
-                        
                         echo '<tr><td>' . $user->getUsNombre() . '</td>';
                         echo '<td>' . $user->getUsPass() . '  </td>';
                         echo '<td>' . $user->getUsMail() . '  </td>';
-                        echo '<td>' . $user->getUsDeshabilitado() . '  </td>';                        
-                       
-                         //Inicio modificacion Marco 
-                         foreach ($listadoRoles as $roles){
+                        if ($user->getUsDeshabilitado() == null)
+                        {
+                            echo '<td>Activo</td>';
+                        }
+                        else
+                        {
+                            echo '<td>Baja desde: ' . $user->getUsDeshabilitado() . '  </td>';
+                        }                        
+                        //Inicio modificacion Marco 
+                        foreach ($listadoRoles as $roles){
                             foreach ($listadoRolesYusuarios as $rolesUsuarios){
                                     $objUsuario = $rolesUsuarios->getObjUsuario();
                                     $objRol = $rolesUsuarios->getObjRol();
@@ -67,24 +66,27 @@ $pagSeleccionada = "usuarios";
                                     $user->getIdUsuario();
                                     //print_r($objRol);
                                     //echo $objRol[0]->getIdRol();
-                                    
                                     if($objRol[0]->getIdRol() ==  $roles->getIdRol() && $objUsuario[0]->getIdUsuario() == $user->getIdUsuario()){
                                         echo '<td>' . $roles->getRolDescripcion() . '</td>';
                                     }else{
                                         echo '<td>';
                                     }
                             }                           
-                         }   
-
-                        
-                     //Fin modificacion Marco
-                        echo '<td><button type="button mx-1" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal" data-bs-id=' . $user->getIdUsuario() . '>Editar</button>';
-                        echo '<a class="btn btn-success mx-1" href="action/abmUsuarios.php?accion=alta&idUsuario=' . $user->getIdUsuario() . '">Dar de alta</a>';
-                        echo '<a class="btn btn-danger mx-1" href="action/abmUsuarios.php?accion=borrar&idUsuario=' . $user->getIdUsuario() . '">Dar baja</a></td></tr>';
+                        }    
+                        echo "<td>";
+                        if ($user->getUsDeshabilitado() == null)
+                        {   
+                            echo '<a class="btn btn-danger mx-1" href="'.$VISTA.'/action/abmUsuarios.php?accion=borrar&idUsuario=' . $user->getIdUsuario() . '">Dar baja</a>';
+                        }   
+                        else
+                        {
+                            echo '<a class="btn btn-success mx-1" href="'.$VISTA.'/action/abmUsuarios.php?accion=alta&idUsuario=' . $user->getIdUsuario() . '">Dar de alta</a>';
+                        }  
+                        //Fin modificacion Marco
+                        echo '<button type="button mx-1" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal" data-bs-id=' . $user->getIdUsuario() . '>Editar</button>';
+                        echo "</td></tr>";
                     }
-                    
                 }
-                
                 ?>
             </tbody>
         </table>
@@ -92,13 +94,11 @@ $pagSeleccionada = "usuarios";
     </div>
     <?php include_once($ESTRUCTURA . "/pie.php"); ?>
 </body>
-
 </html>
-
 <!-- Modal para edicion + archivo getUsuario -->
 <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <form name="editarForm" id="editarForm" method="post" action="action/abmUsuarios.php">
+        <form name="editarForm" id="editarForm" method="post" action="<?php echo $VISTA;?>/action/abmUsuarios.php">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-light">
                     <h1 class="modal-title fs-5" id="editarModalLabel">Editar</h1>
@@ -170,7 +170,6 @@ $pagSeleccionada = "usuarios";
                 inputMail.value = data.mail;
                 inputPasword.value = data.password;
             }).catch(err => console.log(err))
-
     })
 </script>
 <script src="<?php echo $JS; ?>/validarEditar.js"></script>

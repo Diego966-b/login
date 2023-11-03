@@ -6,7 +6,8 @@ $objTrans = new AbmUsuario();
 
 if (isset($datos['accion'])) {
     if ($datos['accion'] == 'editar') {
-        $passEncriptada = md5($datos ["usPass"]);
+        $objEncriptar = new Encriptar();
+        $passEncriptada = $objEncriptar -> encriptarMd5($datos ["usPass"]);
         $datos["usPass"] = $passEncriptada;
         if ($objTrans->modificacion($datos)) {
             $resp = true;;
@@ -18,7 +19,8 @@ if (isset($datos['accion'])) {
         }
     }
     if ($datos['accion'] == 'nuevo') {
-        $passEncriptada = md5($datos ["usPass"]);
+        $objEncriptar = new Encriptar();
+        $passEncriptada = $objEncriptar -> encriptarMd5($datos ["usPass"]);
         $datos["usPass"] = $passEncriptada;
         if ($objTrans->alta($datos)) {
             $resp = true;
@@ -56,7 +58,7 @@ if (isset($datos['accion'])) {
         <div class="fw-bold">
                 <?php echo $mensaje;?>
         </div>
-        <br><a href="../usuarios.php" class="btn btn-dark">Volver</a><br>
+        <br><a href="<?php echo $VISTA;?>/usuarios/usuarios.php" class="btn btn-dark">Volver</a><br>
     </div>
 
 

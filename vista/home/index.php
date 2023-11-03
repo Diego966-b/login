@@ -7,7 +7,7 @@
 <html lang="en">
 <head>   
     <!-- Redirecciona al informe: -->
-    <meta http-equiv="refresh" content="0; url='<?php echo $VISTA; ?>/login.php'"/>
+    <meta http-equiv="refresh" content="0; url='<?php echo $VISTA; ?>/login/login.php'"/>
     <?php include_once($ESTRUCTURA."/header.php"); ?>
 </head>
 <body>
